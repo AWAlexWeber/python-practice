@@ -40,4 +40,12 @@ def runningSum(nums: List[int]) -> List[int]:
 
     return output
 
+# Secondary solution
+class Solution:
+    def runningSum(self, nums: List[int]) -> List[int]:
+        o = [nums[0]]
+        for x in range(1,len(nums)):
+            o.append(o[x-1] + nums[x])
+        return o
+
 runningSum(nums=[0,1,2,3,4,5,6,7,8,9])

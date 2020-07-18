@@ -47,4 +47,15 @@ def numIdenticalPairs(nums: List[int]) -> int:
 
     return out
 
-print(numIdenticalPairs([1,2,3,1,1,3]))
+class Solution:
+    def numIdenticalPairs(self, nums: List[int]) -> int:
+        h = {}
+        o = 0
+        for n in nums:
+            h[n] = (h[n] + 1 if n in h else 0)
+            o += h[n]
+        
+        return o
+
+s = Solution()
+print(s.numIdenticalPairs([1,2,3,1,1,3]))

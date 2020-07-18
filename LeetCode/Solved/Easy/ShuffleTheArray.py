@@ -42,3 +42,13 @@ class Solution:
             index += 1
 
         return out
+
+class Solution01:
+    def shuffle(self, nums: List[int], n: int) -> List[int]:
+        # Simply extend our output
+        m = int(len(nums)/2)
+        o = []
+        for i in range(0,m):
+            o.extend([nums[i], nums[m+i]])
+        return o
+        
