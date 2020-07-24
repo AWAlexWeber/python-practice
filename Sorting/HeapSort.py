@@ -3,6 +3,8 @@ from typing import List
 # Heapify is a fantastic, unstable, in-place sorting algorithm
 # Its best use case is when we havent recieved all of the data yet or we need a worst case in-place algorithm thats unstable
 # Beats merge/quick in space complexity which is always good
+# However heapsort is actually slower than quick/merge due to a higher constant
+# Use heapsort when need an in-place sort
 
 ## Best ## Avrg ## Wrst ## Spce ##
 ## nlogn # nlogn # nlogn #  1   ##
