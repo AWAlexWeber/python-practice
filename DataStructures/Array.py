@@ -1,5 +1,5 @@
 # This is an exploration of the basics of the fundamental array structure within python
-# An array in pyhton, unlike most languages, is functionally the same thing as a list
+# An array in pyhton, unlike most languages, is functionally the same thing as a list (or dynamic array)
 
 # Defining a couple of arrays through a variety of methods
 array = [1,2,3,4,5,6,7,8,9]
