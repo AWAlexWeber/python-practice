@@ -31,6 +31,7 @@ points.length == n
 points[i].length == 2
 -1000 <= points[i][0], points[i][1] <= 1000
 '''
+from typing import List
 
 class Solution:
     def minTimeToVisitAllPoints(self, points: List[List[int]]) -> int:
