@@ -15,6 +15,8 @@ Input: 5
 Output: false
 '''
 
+import math
+
 class Solution:
     def isPowerOfFour(self, num: int) -> bool:
         # Base case
