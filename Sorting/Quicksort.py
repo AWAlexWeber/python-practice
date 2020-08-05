@@ -67,6 +67,31 @@ def quicksort(list, start, end):
 # 3 < 4, p = 1, r = 2, swap it so now our value at 1 = 3 (1, 3, 5, 9, 8, 6, 7, 0, 2, 4)
 # Basically by not incrementing q when the value is less than, we select for all values that are > pivot and swap them with values that are less
 
+def qs(arr: List[int], l: int, r: int):
+    # Base case
+    if r - l <= 1:
+        return
+
+    # Finding our pivot and sorting around it
+    i, j, p = l, l - 1, arr[r - 1]
+
+    while i < r - 1:
+        # Swapping i and j + 1 if i is less than pivot
+        if arr[i] < p:
+            j += 1
+
+            if j != i:
+                arr[i], arr[j] = arr[j], arr[i]
+
+        i += 1
+
+    # Performing swap with the pivot
+    j = j + 1
+    arr[r - 1], arr[j] = arr[j], arr[r - 1]
+
+    qs(arr, l, j)
+    qs(arr, j, r)
+
 # Run example
 list = [1,5,3,9,8,6,7,0,2,4]
 print(list)

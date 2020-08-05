@@ -76,6 +76,11 @@ def betterMergeSort(arr: List[int]):
             j+= 1
             k+= 1
 
+# Merge sort has three components
+# Base Case
+# Divide
+# Merge
+
 a = [1,5,2,9,3,7,8,4,10,125]
 betterMergeSort(a)
 print(a)

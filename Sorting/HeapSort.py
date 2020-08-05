@@ -46,3 +46,10 @@ def heapsort(arr):
     for i in range(len(arr) - 1, 0, -1):
         arr[i], arr[0] = arr[0], arr[i]
         heapify(arr, i, 0)
+
+# Two parts
+# Heapify and Heapsort
+# Heapify will swap the largest child with parent, then heapify that largest child
+# Heapsort will first heapify from length // 2 to 0
+# Heapsort will then swap every value at 0 with i, where i iterates backwards on the array
+# Then it calls heapify with a length of i
