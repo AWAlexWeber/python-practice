@@ -93,7 +93,11 @@ def qs(arr: List[int], l: int, r: int):
     qs(arr, j, r)
 
 # Run example
-list = [1,5,3,9,8,6,7,0,2,4]
-print(list)
-quicksort(list, 0, len(list))
-print(list)
+#list = [1,5,3,9,8,6,7,0,2,4]
+#print(list)
+#quicksort(list, 0, len(list))
+#print(list)
+
+x = [5, 25, 15, 1, 2, 3, 4, 5, 6]
+quicksort(x, 0, len(x))
+print(x)
