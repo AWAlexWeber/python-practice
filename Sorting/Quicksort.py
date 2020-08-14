@@ -50,7 +50,7 @@ def quicksort(list, start, end):
     list[p] = t
 
     # Sorting left and right
-    quicksort(list, 0, q)
+    quicksort(list, start, q)
     quicksort(list, q + 1, end)
 
 #### Explanation ####
@@ -68,16 +68,16 @@ def quicksort(list, start, end):
 # Basically by not incrementing q when the value is less than, we select for all values that are > pivot and swap them with values that are less
 
 def qs(arr: List[int], l: int, r: int):
-    # Base case
-    if r - l <= 1:
+    # Handling base case
+    if l == r:
         return
 
     # Finding our pivot and sorting around it
-    i, j, p = l, l - 1, arr[r - 1]
+    i, j, p = l, l - 1, r - 1
 
-    while i < r - 1:
+    while i < p:
         # Swapping i and j + 1 if i is less than pivot
-        if arr[i] < p:
+        if arr[i] < arr[p]:
             j += 1
 
             if j != i:
@@ -89,8 +89,9 @@ def qs(arr: List[int], l: int, r: int):
     j = j + 1
     arr[r - 1], arr[j] = arr[j], arr[r - 1]
 
+    # Sorting left and right
     qs(arr, l, j)
-    qs(arr, j, r)
+    qs(arr, j + 1, r)
 
 # Run example
 #list = [1,5,3,9,8,6,7,0,2,4]
