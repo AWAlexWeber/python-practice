@@ -1,12 +1,15 @@
 import fnmatch, os
+from pathlib import Path
 
-dir = "C:/Users/Vested/PycharmProjects/python-practice/LeetCode/Solved/"
+dir = Path(os.getcwd()) / "LeetCode" / "Solved"
 
-easyNum = len(fnmatch.filter(os.listdir(dir+"/Easy/"), '*.py'))
-mediumNum = len(fnmatch.filter(os.listdir(dir+"/Medium/"), '*.py'))
-hardNum = len(fnmatch.filter(os.listdir(dir+"/Hard/"), '*.py'))
+easy = len(os.listdir( Path(dir / "Easy") ))
+med = len(os.listdir( Path(dir / "Medium") ))
+hard = len(os.listdir( Path(dir / "Hard") ))
 
-print("Easy: " + str(easyNum))
-print("Medium: " + str(mediumNum))
-print("Hard: " + str(hardNum))
-print("Total: " + str((easyNum + mediumNum + hardNum)))
+total = easy + med + hard
+
+print("Easy: ", easy)
+print("Medium: ", med)
+print("Hard: ", hard)
+print("Total: ", total)
