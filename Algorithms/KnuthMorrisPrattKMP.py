@@ -1,5 +1,6 @@
 # KMP is an incredibly strong pattern searching algorithm
 # Essentially, given a text and a pattern, return all occurences of pattern in text
+# This ends up giving us an O(M+N) search time versus O(M*N) (where m is length of input, and n is length of pattern)
 
 # Basically, by knowing that we have a certain number of subcases and the fact that we know the characters in the next subwindow, we can just skip to the next proper window
 # The first part is the preprocessing pattern
@@ -89,5 +90,5 @@ def kmpsearch(txt: str, pat: str) -> List[int]:
 
     return o
 
-#print("Performing KMP Search")
-#print(kmpsearch("aabaabxaabaabxaabaabxaabaabxaabaabaabaabxaab", "aabaabxaab"))
+print("Performing KMP Search")
+print(kmpsearch("aabaabxaabaabxaabaabxaabaabxaabaabaabaabxaab", "aabaabxaab"))

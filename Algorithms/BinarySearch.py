@@ -29,4 +29,6 @@ def binarySearch(left: [int], right: [int], index: [int], list: [List], target: 
 # We assume an input of a sorted array
 # The above is a recursive solution
 l = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
-binarySearch(0, len(l), int(len(l)/2), l, 15)
+for n in l:
+    o = binarySearch(0, len(l), int(len(l)/2), l, n)
+    print(o)
