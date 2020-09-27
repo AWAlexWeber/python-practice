@@ -1,5 +1,5 @@
 '''
-8. String to Integer (atoi)
+String to Integer (atoi)
 
 Implement atoi which converts a string to an integer.
 
@@ -41,48 +41,35 @@ Example 5:
 Input: "-91283472332"
 Output: -2147483648
 Explanation: The number "-91283472332" is out of the range of a 32-bit signed integer.
-Thefore INT_MIN (−231) is returned.
+             Thefore INT_MIN (−231) is returned.
 '''
 
-# Converting a string to an integer
 class Solution:
     def myAtoi(self, str: str) -> int:
-        # This is mostly handling edge cases to be honest
-        # Moving ourselves to the first index of the number
-        i = 0
-        while i < len(str) and str[i] == ' ':
-            i += 1
-
-        # Checking if its negative
-        negative = 1
-        if i < len(str) and str[i] == '-':
-            negative = -1
-            i += 1
-        elif i < len(str) and str[i] == '+':
-            i += 1
-
-        # This should've moved us to the first word
-        j = i
-        while j < len(str) and str[j].isnumeric():
-            j += 1
-
-        if i == j:
+        if len(str) <= 0:
             return 0
 
-        # Creating our number
-        num = [''] * (j - i)
-        c = 0
+        i = 0
+        while i < len(str) and str[i] == ' ':
+            i+= 1
 
-        while i != j:
-            num[c] = str[i]
-            i += 1
-            c += 1
-
-        v = negative * int(''.join(num))
-        if v <= -2147483648:
-            return -2147483648
-        elif v >= 2147483648:
-            return 2147483647
+        if i == len(str) or (not str[i].isnumeric() and not (str[i] == '+' or str[i] == "-")):
+            return 0
 
         else:
-            return v
+            j = i + 1
+            while j < len(str) and str[j].isnumeric():
+                j += 1
+                if j >= len(str):
+                    break
+
+            if i + 1 == j and (str[i] == '-' or str[i] == '+'):
+                return 0
+
+            i = int(str[i:j])
+            if i <= -2147483648:
+                return -2147483648
+            elif i >= 2147483647:
+                return 2147483647
+
+            return i
