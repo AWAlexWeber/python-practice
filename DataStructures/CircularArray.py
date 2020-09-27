@@ -15,6 +15,17 @@ class CircularArray:
         # Growth factor
         self.growthFactor = growthFactor
 
+    def getValue(self, index):
+        # Get the value at a specific index
+
+        if index >= self.size:
+            return None
+
+        index += self.left
+        if index >= self.maxSize:
+            index = 0 + (index - self.maxSize)
+        return self.data[index]
+
     def append(self, node):
         # Given a data value, append it into our array and move one index to the right
         # If we hit our maximum size, we will grow
@@ -75,3 +86,11 @@ class CircularArray:
         for n in self:
             o[i], i = str(n) + " ", i + 1
         return ''.join(o)
+
+c = CircularArray()
+for i in range(0,10):
+    c.append(i)
+for i in range(0,5):
+    c.pop()
+print(c)
+print(c.getValue(0))
