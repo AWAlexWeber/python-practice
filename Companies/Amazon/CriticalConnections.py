@@ -65,7 +65,7 @@ class Solution:
 
         return f
         
-
+    # DFS Pathfinding
     def path(self, connections: dict, start: int, end: int):
         q = queue.Queue()
 
