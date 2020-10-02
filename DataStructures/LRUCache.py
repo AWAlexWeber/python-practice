@@ -1,8 +1,8 @@
-class LRUNode:
+class LRUNodeTuple:
     def __init__(self, key, value, next=None, prev=None):
         self.key, self.value, self.next, self.prev = key, value, next, prev
 
-class LRUCache:
+class LRUCacheTuple:
 
     def __init__(self, capacity: int):
         self.capacity = capacity
@@ -29,7 +29,7 @@ class LRUCache:
 
     def update(self, key: int, value: int) -> None:
         if self.head == None:
-            n = LRUNode(key, value)
+            n = LRUNodeTuple(key, value)
             self.head = n
             self.bottom = n
             self.data[key] = n
@@ -68,7 +68,7 @@ class LRUCache:
                 # Note that this does increase the size
                 self.size += 1
 
-                node = LRUNode(key, value)
+                node = LRUNodeTuple(key, value)
 
                 self.data[key] = node
 
