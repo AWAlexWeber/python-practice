@@ -36,11 +36,11 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
-        
+
 class Solution:
     def isValidBST(self, root: TreeNode) -> bool:
         return self.r(root)
-        
+
     # Recursive approach
     # Keeping track of the minimal and maximal value in every sub tree
     def r(self, node: TreeNode, l=None, r=None) -> bool:
