@@ -32,6 +32,7 @@ n == nums.length
 '''
 
 from typing import List
+import math
 
 class Solution:
     def find132pattern(self, nums: List[int]) -> bool:
