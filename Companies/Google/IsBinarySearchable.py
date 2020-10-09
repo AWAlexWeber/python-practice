@@ -37,4 +37,4 @@ def canBinarySearch(nums: List[int], left: int, right: int, index: int, alpha: i
 
     return v + canBinarySearch(nums, left, index, leftCenter, alpha, nums[index]) + canBinarySearch(nums, index, right, rightCenter, nums[index], beta)
 
-print(numBinarySearchable([6,5,4,3,2,1]))
+print(numBinarySearchable([2, 3, 10, 40, 50, 8, 2, 3, 10, 40, 50]))
