@@ -33,6 +33,9 @@ Constraints:
 0 <= nums[i] <= 100
 '''
 
+from typing import List
+import math
+
 class Solution:
     def nextPermutation(self, nums: List[int]) -> None:
         # Finding the first a[i] < a[i+1]
