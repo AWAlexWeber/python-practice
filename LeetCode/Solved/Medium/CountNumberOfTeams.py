@@ -36,10 +36,11 @@ n == rating.length
 
 from typing import List
 from collections import defaultdict
+import collections
 
 class Solution:
     # Nice and fast brute force solution
-    # Do not use this 
+    # Do not use this as its O(n^3)
     def bruteForceNumTeams(self, rating: List[int]) -> int:
         out = 0
         for i in range(0, len(rating)):
@@ -51,9 +52,79 @@ class Solution:
                         out += 1
 
         return out
+        
 
     # Slightly faster solution
     # Uses dynamic programming to precompute how many pairs each value has
+    def numTeamsDP(self, rating: List[int]) -> int:
+        up = collections.defaultdict(list)
+        down = collections.defaultdict(list)
+        index = {val : idx + 1 for idx, val in enumerate(rating)} 
+        
+        # O(n^2) for collection pairs in ascending or descending order
+        for i in range(1, len(rating)):
+            r = rating[i]
+            for c in range(i + 1, len(rating)):
+                n = rating[c]
+                if n > r:
+                    up[r].append((r,n))
+                elif n < r:
+                    down[r].append((r,n))
+            
+        upKeys = sorted(up.keys())
+        downKeys = sorted(down.keys())
+        
+        o = 0
+        
+        for i, r in enumerate(rating):
+            for u in upKeys:
+                if u <= r:
+                    continue
+                else:
+                    if index[u] > i:
+                        print(r,up[u])
+                        o += len(up[u])
+            for u in downKeys:
+                if u >= r:
+                    break
+                else:
+                    if index[u] > i:
+                        print(r,down[u])
+                        o += len(down[u])
+                    
+        return o
+
+    # O(NLogN) Solution
+    def numTeams(self, rating: List[int]) -> int:
+        if not rating or len(rating) < 3:
+            return 0
+        cnt = 0
+        dic = {}
+        for i, num in enumerate(sorted(rating)):
+            dic[num] = i
+        cur = rating[:1]
+        for i in range(1, len(rating)):
+            total_small = dic[rating[i]]
+            total_big = len(rating) - 1 - total_small
+            cur_small = self.findIdx(cur, rating[i])
+            cur_big = len(cur) - cur_small
+            cur = cur[:cur_small] + [rating[i]] + cur[cur_small:]
+            cnt += (cur_small * (total_big - cur_big)) + (cur_big * (total_small - cur_small))
+
+        return cnt
+            
+    def findIdx(self, nums, target):
+        # nums is sorted
+        if target > nums[-1]:
+            return len(nums)
+        if target < nums[0]:
+            return 0
+        k = 1
+        while 2 * k < len(nums) and nums[2*k] < target:
+            k *=2
+        for i in range(k, min(2*k+1, len(nums))):
+            if nums[i] > target:
+                return i
                 
 s = Solution()
 s.bruteForceNumTeams([2,5,3,4,1])
