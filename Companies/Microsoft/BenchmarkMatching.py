@@ -70,7 +70,7 @@ class Solution():
         # Getting our current share prices
         currentShares, benchmarkShares = data.split(':')
         currentShares, benchmarkShares = currentShares.split('|'), benchmarkShares.split('|')
-        currentSharesHash, outputList = defaultdict(lambda: 0), list()
+        currentSharesHash, outputBonds, outputShares = defaultdict(lambda: 0), list(), list()
         for c in currentShares:
             name, portType, amount = c.split(',')
             currentSharesHash[name+","+portType] += int(amount)
@@ -78,14 +78,29 @@ class Solution():
             name, portType, amount = c.split(',')
             diff = int(amount) if name+","+portType not in currentSharesHash else (int(amount) - currentSharesHash[name+","+portType])
             if diff != 0:
-                outputList.append(("SELL" if diff < 0 else "BUY") + "," + name + "," + portType + "," + str(abs(diff)))
+                s = ("SELL" if diff < 0 else "BUY") + "," + name + "," + portType + "," + str(abs(diff))
+                if portType == "BOND":
+                    outputBonds.append((name,s))
+                else:
+                    outputShares.append((name,s))
             if name+","+portType in currentSharesHash:
                 del currentSharesHash[name+","+portType]
         for c in currentSharesHash.keys():
             name, portType = c.split(',')
             amount = currentSharesHash[c]
-            outputList.append("SELL,"+name+","+portType+","+str(amount))
-        return outputList
+            if portType == "BOND":
+                    outputBonds.append((name,s))
+            else:
+                outputShares.append((name,s))
+
+        # Sorting outputs
+        output = list()
+        for bond in sorted(outputBonds):
+            output.append(bond[1])
+        for share in sorted(outputShares):
+            output.append(share[1])
+
+        print(output)
         
 s = Solution()
 s.benchmarkMatching("Vodafone,STOCK,10|Google,STOCK,15:Vodafone,STOCK,15|Vodafone,BOND,10|Google,STOCK,10")
