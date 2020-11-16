@@ -55,7 +55,7 @@ class Solution:
             
         return -1
 
-    # O(1) solution
+    # O(1) solution. Yes our other solution is already O(1), but this uses less space.
     def minDominoRotationsFaster(self, A: List[int], B: List[int]) -> int:
         def check(x):
             """
