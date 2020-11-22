@@ -103,3 +103,60 @@ class Solution:
         if total_rotten_oranges == total_oranges:
             return time_elapsed - 1
         return -1
+
+# A little better of a solution
+class Solution2:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        # Finding all of the rotten oranges
+        q = queue.Queue()
+        mxTime = 0
+        visit = set()
+        orangeSet = set()
+        
+        for x in range(len(grid)):
+            for y in range(len(grid[0])):
+                if grid[x][y] == 2:
+                    q.put((x,y,0))
+                    visit.add((x,y))
+                    
+                if grid[x][y] != 0:
+                    orangeSet.add((x,y))
+                
+        while not q.empty():
+            x, y, t = q.get()
+            
+            mxTime = max(t, mxTime)
+            
+            # Checking all of its neighbors, where valid
+            if self.isFreshOrange(grid, visit, x - 1, y):
+                q.put((x - 1, y, t + 1))
+                visit.add((x - 1, y))
+                
+            if self.isFreshOrange(grid, visit, x + 1, y):
+                q.put((x + 1, y, t + 1))
+                visit.add((x + 1, y))
+                
+            if self.isFreshOrange(grid, visit, x, y - 1):
+                q.put((x, y - 1, t + 1))
+                visit.add((x, y - 1))
+                
+            if self.isFreshOrange(grid, visit, x, y + 1):
+                q.put((x, y + 1, t + 1))
+                visit.add((x, y + 1))
+                
+
+        return mxTime if orangeSet == visit else -1
+                
+            
+    def isFreshOrange(self, grid: List[List[int]], visit: set, x: int, y: int) -> bool:
+        # Can't revisit the same cell
+        if (x,y) in visit:
+            return False
+        
+        # Check if the position is valid and its a fresh orange
+        elif x >= 0 and x < len(grid) and y >=0 and y < len(grid[x]):
+            return grid[x][y] == 1
+        
+        # Otherwise return false; not a valid position
+        else:
+            return False
