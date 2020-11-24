@@ -58,6 +58,12 @@ class Solution:
 
         pass
 
+d = list()
+for x in range(0,50000):
+    d.append(random.randrange(0,100))
+
+print(d)
+exit
 
 s = Solution()
 # Popping a random index
