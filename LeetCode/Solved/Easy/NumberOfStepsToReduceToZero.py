@@ -35,11 +35,31 @@ Output: 12
 # We count all the 1s, in this case 6. Each 1 represents a division of 2, so a step that we have to take
 # We add the length of the entire string, as every bit represents a -1 we have to take
 # The divisions being the 1s and the length being the -1 gives us an almost final answer, we - 1 since its 1 over by default
-# Going to be honest this feels like one of those problems where you just have to know the trick
+# Going to be honest this feels like one of those problems where you just have to know the trick <-
 class Solution:
     def numberOfSteps (self, num: int) -> int:
         d = f'{num:b}'
         return d.count('1') - 1 + len(d)
+
+# Brute force solution
+class SolutionBruteForce:
+    def numberOfSteps (self, num: int) -> int:
+        # Goal is basically to reduce our number to 2, then 1 then 0
+        # Handling some base cases
+        if num <= 2:
+            # 2 takes two steps (/2, -1), 1 takes 1 step (-1), zero takes zero so we return num
+            return num
+
+        # Brute force; not a fan but let's take a look at how this works first
+        count = 0
+        while num != 0:
+            if num % 2 == 0:
+                num /= 2
+            else:
+                num -= 1
+            count += 1
+        
+        return count
 
 s = Solution()
 print(s.numberOfSteps(123))
