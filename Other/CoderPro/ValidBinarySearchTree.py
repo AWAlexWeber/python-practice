@@ -1,4 +1,7 @@
-''' Given a tree, validate whether or not it is a binary search tree or not'''
+''' 
+#2
+Given a tree, validate whether or not it is a binary search tree or not
+'''
 
 from typing import List
 from queue import Queue
@@ -19,6 +22,8 @@ from queue import Queue
 # When we visit 7, our minimal value is 5 and our maximal value is infinity, so we are good.
 # When we visit 4, our maximal value is now 7 and our minimal value is 5. 4 is not within that range, so invalid
 # When we go to 6, our minimal value is 7. 6 does not work
+
+# O(n) time complexity, O(n) space complexity (sort of, recursive calls will expand the stack as we recurse)
 
 class TreeNode():
 
