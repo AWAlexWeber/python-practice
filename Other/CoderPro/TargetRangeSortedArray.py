@@ -70,7 +70,7 @@ class SolutionTwo():
     def findSearch(self, nums: List[int], left: int, center: int, right: int, target: int, direction: bool):
 
         # Handling if we didn't find our value
-        if left == center or right == center:
+        if left == center and right == center:
             return -1
 
         # Handling success state
@@ -97,8 +97,55 @@ class SolutionTwo():
             newCenter = center + ((right-center)//2)
             return self.findSearch(nums, center, newCenter, right, target, direction)
 
+class SolutionThree():
+    def findRangeOfTargetInSortedArray(self, nums: List[int], target: int) -> tuple:
+        # Iterative binary search for the left most value
+        return [self.iterativeBinarySearch(nums, target, True), self.iterativeBinarySearch(nums, target, False)]
+        
+    # Iterative search; goes left or right depending on dir (true=left)
+    def iterativeBinarySearch(self, nums: List[int], target: int, dir: bool) -> int:
+        l, c, r = 0, len(nums) // 2, len(nums)
+        while l != c or r != c:
+            print(l,c,r)
+            if nums[c] == target:
+                # Handling left-target
+                if dir and (c == 0 or nums[c - 1] < target):
+                    return c
+                elif not dir and (c == len(nums) - 1 or nums[c + 1] > target):
+                    return c
+
+                # Hit target but we have more to go
+                else:
+                    if dir:
+                        # Going left
+                        newCenter = l + ((c-l) // 2)
+                        l, c, r = l, newCenter, c
+
+                    else:
+                        # Going right
+                        newCenter = c + ((r-c) // 2)
+                        l, c, r = c, newCenter, r
+
+            else:
+                if nums[c] > target:
+                    newCenter = l + ((c-l) // 2)
+                    l, c, r = l, newCenter, c
+                    continue
+
+                else:
+                    # Going right
+                    newCenter = c + ((r-c) // 2)
+                    l, c, r = c, newCenter, r
+                    continue
+
+        return -1
+
+
+
 
 s = Solution()
 s2 = SolutionTwo()
-print(s2.findRangeOfTargetInSortedArray([1,3,3,5,7,8,9,9,15],9))
-print(s2.findRangeOfTargetInSortedArray([1,2,3,9,9,9,9,9,9,9,15],9))
+s3 = SolutionThree()
+print(s.findRangeOfTargetInSortedArray([9,9,9,9,9,9,9],9))
+print(s2.findRangeOfTargetInSortedArray([9,9,9,9,9,9,9],9))
+print(s3.findRangeOfTargetInSortedArray([9,9,9,9,9,9,9],9))
