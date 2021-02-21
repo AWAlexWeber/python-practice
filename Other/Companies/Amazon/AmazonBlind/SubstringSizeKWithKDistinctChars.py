@@ -24,6 +24,9 @@ from collections import defaultdict
 # This is essentially a 'largest substring with unique characters' problem, except our sliding window size is fixed
 class Solution():
     def substringList(self, k: int, s: str) -> List[str]:
+        if len(s) < k:
+            return []
+            
         # Keeping track of what character's we've visisted. Anytime we get a non unique value we through it into our set.
         nonUnique = set()
         letterCount = defaultdict(lambda: 0)
