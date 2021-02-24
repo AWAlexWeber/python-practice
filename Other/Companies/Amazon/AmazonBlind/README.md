@@ -37,3 +37,5 @@ Winning Sequence: https://algo.monster/problems/winning_sequence
 Shopping Patterns: https://algo.monster/problems/shopping_patterns
 Choose A Flask: https://algo.monster/problems/choose_a_flask
 Throttling Gateway: https://algo.monster/problems/throttling_gateway
+
+Amazon OA: (Storage Optimization, Shopping Options)
