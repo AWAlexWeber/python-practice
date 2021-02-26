@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "pythonPath": "C:/Users/awale/AppData/Local/Programs/Python/Python39/python.exe"
+            "python": "C:/Users/Vested/AppData/Local/Programs/Python/Python38-32/python.exe"
         }
     ]
 }
