@@ -44,7 +44,14 @@ class Solution():
             output.insert(n[1], n)
         return output
 
+    def queueReconstructionTwo(self, nums: List[tuple]) -> List[tuple]:
+        nums.sort(key=lambda t:(-t[0], t[1]))
+        output = []
+        for n in nums:
+            output.insert(n[1], n)
+        return output 
+
 
 s = Solution()
 print(s.queueReconstruction([(7,0),(4,4),(7,1),(5,0),(6,1),(5,2)]))
-print(s.optimalQueueReconstruction([(7,0),(4,4),(7,1),(5,0),(6,1),(5,2)]))
+print(s.queueReconstructionTwo([(7,0),(4,4),(7,1),(5,0),(6,1),(5,2)]))
