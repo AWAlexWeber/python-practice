@@ -1,5 +1,5 @@
 '''
-Given a tree, write a function to serialize it into a string and then deserialize it.
+Given a Balanced BST, return the next highest value present in the tree.
 '''
 
 from queue import Queue
@@ -10,7 +10,7 @@ class TreeNode:
     def __init__(self, val: int, left: 'TreeNode'=None, right: 'TreeNode'=None):
         self.val, self.left, self.right = val, left, right
 
-class Solution:
+class TreeSerializer:
     def serialize(self, root: TreeNode) -> str:
         if not root:
             return ''
@@ -77,6 +77,45 @@ class Solution:
         root = dfs(0)
         return root
 
-s = Solution()
+s = TreeSerializer()
 root = s.deserialize('4281x59xxxxx7xx')
-print(s.serialize(root))
+
+class Solution:
+    def nextHighestValue(self, root: TreeNode, targetVal: int) -> int:
+        # Basically we are going to search this tree in order. When we find our node value, we pass up a true and make a comparison.
+        outputVal = float('inf')
+        queue = Queue()
+        queue.put(root)
+        while not queue.empty():
+            node = queue.get()
+            if int(node.val) > targetVal:
+                outputVal = min(outputVal, int(node.val))
+            if node.left:
+                queue.put(node.left)
+            if node.right:
+                queue.put(node.right)
+        return outputVal
+
+    def nextInorderSuccessor(self, root: TreeNode, targetVal: int) -> int:
+        # This one we will correctly implement in-order traversal.
+        global output
+        output = None
+
+        def inOrder(node: TreeNode, didFind: bool=False):
+            global output
+            if node.left:
+                didFind = inOrder(node.left, didFind)
+            if didFind and not output:
+                output = node.val
+            if node.val == targetVal:
+                didFind = True
+            if node.right:
+                didFind = inOrder(node.right, didFind)
+            return didFind
+
+        inOrder(root)
+        return output
+        
+    
+s = Solution()
+print(s.nextInorderSuccessor(root, '7'))
